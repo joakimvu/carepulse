@@ -1,5 +1,5 @@
 import RegisterForm from "@/components/forms/registerForm";
-import { getUser } from "@/lib/actions/pateint.actions";
+import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
