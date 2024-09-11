@@ -3,9 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
+import SumbitButton from "../SumbitButton";
+import { useState } from "react";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -24,6 +25,8 @@ const formSchema = z.object({
 });
 
 const PatientForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -77,7 +80,7 @@ const PatientForm = () => {
           iconAlt="email"
         />
 
-        <Button type="submit">Submit</Button>
+        <SumbitButton isLoading={isLoading}>Get Started</SumbitButton>
       </form>
     </Form>
   );
