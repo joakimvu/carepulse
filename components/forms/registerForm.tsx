@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { Doctors, GenderOptions } from "@/constants";
 import { Label } from "../ui/label";
 import Image from "next/image";
-import { SelectItem } from "@radix-ui/react-select";
+import { SelectItem } from "../ui/select";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -60,13 +60,11 @@ const RegisterForm = ({ user }: { user: User }) => {
           <h1 className="header">Welcome 👋</h1>
           <p className="text-dark-700">Let us know more about yourself</p>
         </section>
-
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Personal Information</h2>
           </div>
         </section>
-
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
@@ -76,7 +74,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           iconSrc="/assets/icons/user.svg"
           iconAlt="user"
         />
-
+        {/* Name */}
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.INPUT}
@@ -98,7 +96,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             iconAlt="email"
           />
         </div>
-
+        {/* Birthdate & Gender */}
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.DATE_PICKER}
@@ -138,7 +136,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             )}
           />
         </div>
-
+        {/* Address & Occupation */}
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.INPUT}
@@ -156,7 +154,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             placeholder="Software Engineer"
           />
         </div>
-
+        {/* Emergency Contact */}
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.INPUT}
@@ -174,13 +172,11 @@ const RegisterForm = ({ user }: { user: User }) => {
             placeholder="(555) 123-4567"
           />
         </div>
-
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Medical Information</h2>
           </div>
         </section>
-
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.SELECT}
@@ -205,12 +201,69 @@ const RegisterForm = ({ user }: { user: User }) => {
             ))}
           </CustomFormField>
         </div>
+        {/* Insurance */}
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="insuranceProvider"
+            label="Insurance Provider"
+            placeholder="Tryg Forsikring"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="insurancePolicyNumber"
+            label="Insurance Policy Number"
+            placeholder="ABC123456789"
+          />
+        </div>
+        {/* Allergies */}
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="allergies"
+            label="Allergies (if any)"
+            placeholder="Peanuts, Pollen, Milk"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="currentMedication"
+            label="Current medication (if any)"
+            placeholder="Ibuprofen 200mg, Paracetamol 500mg"
+          />
+        </div>
+        {/* Family Medications */}
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="familyMedicalHistory"
+            label="Family medical history (if any)"
+            placeholder="Mother had a brain cancer, Father had a heart disease"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="pastMedicalHistory"
+            label="Past medical history (if any)"
+            placeholder="Appendectomy, Tonsillectomy"
+          />
+        </div>
+
+        <section className="space-y-6">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Identification and Verification</h2>
+          </div>
+        </section>
 
         <div className="flex flex-col gap-6 xl:flex-row"></div>
         <div className="flex flex-col gap-6 xl:flex-row"></div>
-        <div className="flex flex-col gap-6 xl:flex-row"></div>
-        <div className="flex flex-col gap-6 xl:flex-row"></div>
-
         <SumbitButton isLoading={isLoading}>Get Started</SumbitButton>
       </form>
     </Form>
