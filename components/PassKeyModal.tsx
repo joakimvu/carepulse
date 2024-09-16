@@ -13,7 +13,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { encryptKey } from "@/lib/utils";
+import { decryptKey, encryptKey } from "@/lib/utils";
 
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -32,8 +32,10 @@ const PassKeyModal = () => {
       : null;
 
   useEffect(() => {
+    const accessKey = encryptedKey && decryptKey(encryptedKey);
+
     if (path) {
-      if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
+      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
         setOpen(false);
         router.push("/admin");
       } else {
@@ -53,7 +55,6 @@ const PassKeyModal = () => {
       localStorage.setItem("accessKey", encryptedKey);
 
       setOpen(false);
-      router.push("/admin");
     } else {
       setError("Invalid passkey. Please try again");
     }
