@@ -8,6 +8,7 @@ import {
 } from "../appwrite.config";
 import { parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
+import { revalidatePath } from "next/cache";
 
 // CREATE Appointment
 export const createAppointment = async (
@@ -77,8 +78,34 @@ export const getRecentAppointmentList = async () => {
       ...counts,
       documents: appointments.documents,
     };
-
+    console.log("data from fetching appointment list", data);
     return parseStringify(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// UPDATE Appointment
+export const updateAppointment = async ({
+  appointmentId,
+  userId,
+  appointment,
+  type,
+}: UpdateAppointmentParams) => {
+  try {
+    const updatedAppointment = await databases.updateDocument(
+      DATABASE_ID!,
+      APPOINTMENT_COLLECTION_ID!,
+      appointmentId,
+      appointment
+    );
+
+    if (!updatedAppointment) throw new Error("Appointment not found");
+
+    // TODO: SMS notification
+
+    revalidatePath("/admin");
+    return parseStringify(updatedAppointment);
   } catch (error) {
     console.log(error);
   }
