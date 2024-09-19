@@ -48,8 +48,7 @@ export const getRecentAppointmentList = async () => {
   try {
     const appointments = await databases.listDocuments(
       DATABASE_ID!,
-      APPOINTMENT_COLLECTION_ID!,
-      [Query.orderDesc("$createdAt")]
+      APPOINTMENT_COLLECTION_ID!
     );
 
     const initialCounts = {
@@ -78,7 +77,6 @@ export const getRecentAppointmentList = async () => {
       ...counts,
       documents: appointments.documents,
     };
-    console.log("data from fetching appointment list", data);
     return parseStringify(data);
   } catch (error) {
     console.log(error);
