@@ -44,7 +44,7 @@ export const getAppointment = async (appointmentId: string) => {
   }
 };
 
-// GET Appointment List
+// GET Appointmnet List
 export const getRecentAppointmentList = async () => {
   try {
     const appointments = await databases.listDocuments(
@@ -102,11 +102,11 @@ export const updateAppointment = async ({
     if (!updatedAppointment) throw new Error("Appointment not found");
 
     const smsMessage = `
-    Hi, its CarePulse.
+    Hi, it's CarePulse.
     ${
       type === "schedule"
         ? `Your appointment has been scheduled for ${
-            formatDateTime(appointment.schedule!).dateTime
+            formatDateTime(appointment.schedule).dateTime
           } with Dr. ${appointment.primaryPhysician}`
         : `We regret to inform you that your appointment has been cancelled for the following reason: ${appointment.cancellationReason}`
     }
