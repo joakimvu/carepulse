@@ -37,7 +37,7 @@ const AppointmentForm = ({
 
   const AppointmentFormValidation = getAppointmentSchema(type);
 
-  console.log(appointment);
+  console.log(patientId);
 
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
@@ -72,7 +72,7 @@ const AppointmentForm = ({
     console.log("type", { type });
 
     try {
-      if (type === "create" && patientId) {
+      if (type === "create" && userId) {
         const appointmentData = {
           userId,
           patient: patientId,
