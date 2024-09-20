@@ -83,7 +83,7 @@ export const getPatient = async (userId: string) => {
     const patient = await databases.listDocuments(
       DATABASE_ID!,
       PATIENT_COLLECTION_ID!,
-      [Query.equal("userId", userId)]
+      [Query.equal("userId", [userId])]
     );
 
     return parseStringify(patient.documents[0]);
