@@ -1,4 +1,4 @@
-Prosjekt er bygget på Next.js, Appwrite, Sentry, shadcn
+Prosjektet er bygget på Next.js, Appwrite, Sentry, shadcn
 
 ## Et system for legetimebestilling
 
